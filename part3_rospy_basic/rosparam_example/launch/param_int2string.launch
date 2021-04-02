@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="rosparam_example" name="param_int2string" type="param_int2string.py" output="screen">
+        <param name="get_number" value="1"/>
+    </node>
+</launch>

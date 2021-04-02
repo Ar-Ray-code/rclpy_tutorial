@@ -8,7 +8,8 @@ class hello_world:
         self.number = 0
 
         self.pub = rospy.Publisher('pub_int', Int32, queue_size=1)
-        self.rate = rospy.Rate(2)
+        hz = rospy.get_param("~pub_rate", 2)
+        self.rate = rospy.Rate(hz)
         self.pub_number()
     
     def pub_number(self):

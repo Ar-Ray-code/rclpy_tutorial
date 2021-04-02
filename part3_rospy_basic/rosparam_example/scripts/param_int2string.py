@@ -2,25 +2,26 @@
 import rospy
 from std_msgs.msg import Int32
 
-class hello_world:
+class param_int2string:
 
     def __init__(self):
 
-        self.pub = rospy.Publisher('pub_int', Int32, queue_size=1)
-        self.number = rospy.get_param("~number", -1)
-        self.rate = rospy.Rate(2)
+        self.number = rospy.get_param("~get_number", -1)
+        rospy.set_param("~set_number2str",str(self.number))
+        rospy.set_param("set_number2str",str(self.number))
         self.pub_number()
     
     def pub_number(self):
         while not rospy.is_shutdown():
             rospy.loginfo(str(self.number))
-            self.pub.publish(self.number)
-            self.rate.sleep()
+            rospy.loginfo("exit")
+            exit(0)
 
 def rospy_init(args = None):
+    print("Usage : '$ rosrun rosparam_example param_int2string.py _get_number:=300'")
     try:
         rospy.init_node('pub_node',argv=args)
-        hello_world()
+        param_int2string()
     except rospy.ROSInitException as e:
         print(e)
 
