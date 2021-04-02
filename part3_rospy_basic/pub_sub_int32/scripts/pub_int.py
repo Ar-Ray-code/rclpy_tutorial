@@ -8,7 +8,6 @@ class hello_world:
         self.number = 0
 
         self.pub = rospy.Publisher('pub_int', Int32, queue_size=1)
-        rospy.init_node('pub_node')
         self.rate = rospy.Rate(2)
         self.pub_number()
     
@@ -19,8 +18,12 @@ class hello_world:
             self.rate.sleep()
             self.number = self.number + 1
 
-if __name__=="__main__":
+def rospy_init(args = None):
     try:
+        rospy.init_node('pub_node',argv=args)
         hello_world()
-    except rospy.ROSInitException:
-        pass
+    except rospy.ROSInitException as e:
+        print(e)
+
+if __name__=="__main__":
+    rospy_init()
