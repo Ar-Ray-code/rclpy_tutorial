@@ -16,7 +16,7 @@ add_message_files(
 ## using service
 add_service_files(
   FILES
-  calc_msg.srv
+  calc_msg_srv.srv
 )
 
 generate_messages(

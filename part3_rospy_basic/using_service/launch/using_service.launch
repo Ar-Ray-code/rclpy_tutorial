@@ -1,0 +1,15 @@
+<launch>
+    <node pkg="pub_sub_int32" name="pub_int_a" type="pub_int.py">
+        <param name="pub_rate" value="2"/>
+        <remap from="pub_int" to="/a"/>
+    </node>
+
+    <node pkg="pub_sub_int32" name="pub_int_b" type="pub_int.py">
+        <param name="pub_rate" value="1"/>
+        <remap from="pub_int" to="/b"/>
+    </node>
+
+    <node pkg="original_msg_example" name="original_msg_srv" type="example_msg_srv.py"/>
+    <node pkg="using_service" name="using_service" type="using_service.py" output="screen"/>
+    <node pkg="rqt_graph" name="rqt_graph" type="rqt_graph"/>
+</launch>
