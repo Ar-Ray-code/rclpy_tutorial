@@ -13,11 +13,17 @@ add_message_files(
   FILES
   example_msg.msg
 )
+## using service
+add_service_files(
+  FILES
+  calc_msg.srv
+)
 
 generate_messages(
   DEPENDENCIES
   std_msgs
 )
+
 catkin_package(
  CATKIN_DEPENDS
   rospy
