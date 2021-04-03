@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
-<package format="2">
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
   <name>pub_sub_int32</name>
   <version>0.0.0</version>
   <description>The pub_sub_int32 package</description>
-
-  <maintainer email="ray255ar@gmail.com">Ar-Ray-code</maintainer>
-
+  <maintainer email="ray255ar@gmail.com">ubuntu</maintainer>
   <license>Apache License, Version 2.0</license>
 
-  <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>rospy</build_depend>
-  <build_export_depend>rospy</build_export_depend>
-  <exec_depend>rospy</exec_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>example_interfaces</exec_depend>
 
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
 </package>

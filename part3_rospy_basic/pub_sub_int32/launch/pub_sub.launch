@@ -1,5 +1,0 @@
-<launch>
-    <node pkg="pub_sub_int32" name="pub_int32" type="pub_int.py"/>
-    <node pkg="pub_sub_int32" name="sub_int32" type="sub_int.py" output="screen"/>
-    <node pkg="rqt_graph" name="rqt_graph" type="rqt_graph"/>
-</launch>
