@@ -2,15 +2,14 @@ import os
 from glob import glob
 from setuptools import setup
 
-package_name = 'pub_sub_int32'
+package_name = 'rosparam_example'
 
 setup(
     name=package_name,
     version='0.0.0',
     packages=[],
-    py_modules= [
-        'scripts.pub_int',
-        'scripts.sub_int'
+    py_modules=[
+        'scripts.param_int2string',
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -30,8 +29,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'pub_int_node = scripts.pub_int:ros_main',
-            'sub_int_node = scripts.sub_int:ros_main'
+            'param_int2string = scripts.param_int2string:ros_main',
         ],
     },
     data_files=[

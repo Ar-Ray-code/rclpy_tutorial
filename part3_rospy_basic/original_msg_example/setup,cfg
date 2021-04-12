@@ -1,0 +1,4 @@
+[develop]
+script-dir=$base/lib/original_msg_example
+[install]
+install-scripts=$base/lib/original_msg_example

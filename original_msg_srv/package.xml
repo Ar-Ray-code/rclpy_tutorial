@@ -1,16 +1,20 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>pub_sub_int32</name>
+  <name>original_msg_srv</name>
   <version>0.0.0</version>
-  <description>The pub_sub_int32 package</description>
+  <description>The original_msg_srv package</description>
   <maintainer email="ray255ar@gmail.com">ubuntu</maintainer>
   <license>Apache License, Version 2.0</license>
 
-  <exec_depend>rclpy</exec_depend>
-  <exec_depend>example_interfaces</exec_depend>
+  <depend>rclpy</depend>
+  <depend>rclcpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>example_interfaces</depend>
+
+  <member_of_group>rosidl_interface_packages</member_of_group>
 
   <export>
-    <build_type>ament_python</build_type>
+    <build_type>ament_cmake</build_type>
   </export>
 </package>
