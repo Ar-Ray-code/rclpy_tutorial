@@ -11,10 +11,11 @@ class hello_class:
         return a+b
 
     def printall(self):
-        print("Hello World3")
+        print("Hello World3_class ===============")
         print("c:",self.__private_c)
+        print("==================================")
 
-if __name__=="__main__":
+def print_msgs():
     hello = hello_class()
 
     # print public calc_ab
@@ -42,6 +43,9 @@ if __name__=="__main__":
         print("Private_c:", hello.__private_c)
     except Exception as e:
         print(e)
+
+if __name__=="__main__":
+    print_msgs()
 
     
     

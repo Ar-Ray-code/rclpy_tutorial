@@ -7,15 +7,15 @@ class calc_ab:
 
 class hello_class(calc_ab):
     def __init__(self):
-        self.__private_c = self.__calc_private_ab(1, 2)
+        self.__private_c = self.calc_public_ab(1, 2)
         self.public_c = self.__private_c
-        self.printall()
+        self.print_all()
 
-    def printall(self):
+    def print_all(self):
         print("Hello World3")
         print("c:",self.__private_c)
 
-if __name__=="__main__":
+def print_msgs():
     hello = hello_class()
 
     # print public calc_ab
@@ -44,5 +44,5 @@ if __name__=="__main__":
     except Exception as e:
         print(e)
 
-    
-    
+if __name__=="__main__":
+    print_msgs()
