@@ -1,27 +1,41 @@
 #!/bin/python3
-import rospy
-from std_msgs.msg import Int32
-from original_msg_example.msg import example_msg
-from original_msg_example.srv import calc_msg_srv
+import rclpy
+from rclpy.node import Node
+from example_interfaces.msg import Int32
+from rclpy.qos import QoSHistoryPolicy, QoSProfile
 
-class msg_output:
+from original_msg_srv.msg import ExampleMsg
+from original_msg_srv.srv import CalcMsgSrv
+
+class using_srv(Node):
 
     def __init__(self):
+
+        super().__init__('pub_int')
+        pub_qos = QoSProfile(history=QoSHistoryPolicy.KEEP_LAST, depth=1)
+        sub_qos = QoSProfile(history=QoSHistoryPolicy.KEEP_LAST, depth=1)
+
         self.a = 0
         self.b = 0
 
-        self.msg_data = example_msg()
-        self.pub = rospy.Publisher('pub_example_msg', example_msg, queue_size=1)
+        self.msg_data = ExampleMsg()
+        self.pub = self.create_publisher(ExampleMsg, 'pub_ExampleMsg', pub_qos)
 
-        rospy.Subscriber('a',Int32,self.sub_a)
-        rospy.Subscriber('b',Int32,self.sub_b)
+        self.calc_module = self.create_client(CalcMsgSrv, 'calc_ab')
 
-        rospy.spin()
+        self.create_subscription(Int32, 'a', self.sub_a, sub_qos)
+        self.create_subscription(Int32, 'b', self.sub_b, sub_qos)
     
     def calc_by_service(self):
-        calc_module = rospy.ServiceProxy('calc_ab', calc_msg_srv)
-        sub_data = calc_module(self.a,self.b)
-        rospy.loginfo(sub_data)
+
+        while not self.calc_module.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('service not available, waiting again...')
+        send_data = CalcMsgSrv()
+        send_data.a = self.a
+        send_data.b = self.b
+        sub_data = self.calc_module.call_async(send_data)
+
+        self.get_logger().info(str(sub_data))
     
     def sub_a(self,data):
         self.a = data.data
@@ -31,12 +45,13 @@ class msg_output:
         self.b = data.data
         self.calc_by_service()
 
-def rospy_init(args = None):
-    try:
-        rospy.init_node('msg_output',argv=args)
-        msg_output()
-    except rospy.ROSInitException as e:
-        print(e)
+def ros_main(args = None):
+    rclpy.init(args=args)
+    ros_class = using_srv()
+    rclpy.spin(ros_class)
 
-if __name__=="__main__":
-    rospy_init()
+    ros_class.destroy_node()
+    rclpy.shutdown()
+
+if __name__=='__main__':
+    ros_main()

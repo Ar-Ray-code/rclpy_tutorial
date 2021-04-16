@@ -4,7 +4,7 @@ from rclpy.node import Node
 from rclpy.qos import QoSHistoryPolicy, QoSProfile
 from example_interfaces.msg import Int32
 
-from original_msg_example.msg import ExampleMsg
+from original_msg_srv.msg import ExampleMsg
 
 class msg_output(Node):
 
@@ -22,8 +22,6 @@ class msg_output(Node):
 
         self.create_subscription(Int32,'a',self.sub_a,sub_qos)
         self.create_subscription(Int32,'b',self.sub_b,sub_qos)
-
-        rospy.spin()
     
     def calc_four_arithmetic_operations(self):
         self.msg_data.a              = self.a

@@ -2,15 +2,14 @@ import os
 from glob import glob
 from setuptools import setup
 
-package_name = 'original_msg_example'
+package_name = 'using_service'
 
 setup(
     name=package_name,
     version='0.0.0',
     packages=[],
     py_modules= [
-        'scripts.example_msg_output',
-        'scripts.example_msg_srv',
+        'scripts.using_service'
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -30,8 +29,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'example_msg_output = scripts.example_msg_output:ros_main',
-            'example_msg_srv = scripts.example_msg_srv:ros_main',
+            'using_service = scripts.using_service:ros_main'
         ],
     },
     data_files=[

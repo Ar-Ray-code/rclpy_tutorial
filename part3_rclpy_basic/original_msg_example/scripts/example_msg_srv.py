@@ -1,17 +1,19 @@
 #!/bin/python3
-import rospy
-from std_msgs.msg import Int32
-from original_msg_example.msg import example_msg
+import rclpy
+from rclpy.node import Node
+from example_interfaces.msg import Int32
 
-from original_msg_example.srv import calc_msg_srv, calc_msg_srvResponse
+from original_msg_srv.msg import ExampleMsg
+from original_msg_srv.srv import CalcMsgSrv
 
-class msg_output:
+class msg_output(Node):
     def __init__(self):
-        service = rospy.Service('calc_ab',calc_msg_srv,self.srv_ab)
-        rospy.spin()
+        super().__init__('msg_srv')
+
+        service = self.create_service(CalcMsgSrv,'calc_ab',self.srv_ab)
     
     def calc_four_arithmetic_operations(self, input_a, input_b):
-        msg_data = example_msg()
+        msg_data = ExampleMsg()
         msg_data.a              = input_a
         msg_data.b              = input_b
         msg_data.sum_ab         = input_a + input_b
@@ -26,16 +28,17 @@ class msg_output:
             msg_data.remainder_ab   = input_a % input_b
         return msg_data
 
-    def srv_ab(self,request):
-        result = self.calc_four_arithmetic_operations(request.a,request.b)
-        return calc_msg_srvResponse(result)
+    def srv_ab(self, request, response:CalcMsgSrv):
+        response.result = self.calc_four_arithmetic_operations(request.a,request.b)
+        return response
 
-def rospy_init(args = None):
-    try:
-        rospy.init_node('msg_output',argv=args)
-        msg_output()
-    except rospy.ROSInitException as e:
-        print(e)
+def ros_main(args = None):
+    rclpy.init(args=args)
+    ros_class = msg_output()
+    rclpy.spin(ros_class)
 
-if __name__=="__main__":
-    rospy_init()
+    ros_class.destroy_node()
+    rclpy.shutdown()
+
+if __name__=='__main__':
+    ros_main()

@@ -4,6 +4,8 @@ from rclpy.node import Node
 from rclpy.qos import QoSHistoryPolicy, QoSProfile
 from example_interfaces.msg import Int32
 
+import time
+
 class pub_int(Node):
 
     def __init__(self):
@@ -13,10 +15,13 @@ class pub_int(Node):
         pub_qos = QoSProfile(history=QoSHistoryPolicy.KEEP_LAST, depth=1)
 
         self.pub = self.create_publisher(Int32, 'pub_int',pub_qos)
-        self.declare_parameter('~pub_rate',2)
-        param = self.get_parameter('~pub_rate')
+        self.declare_parameter('pub_rate',2)
         
-        period = 1/param.get_parameter_value().type
+        param = self.get_parameter('pub_rate')
+        
+        hz = param.get_parameter_value().integer_value
+        self.get_logger().info(str())
+        period = 1/hz
         self.get_logger().info('period: '+str(period))
         
         self.create_timer(period,self.pub_number)

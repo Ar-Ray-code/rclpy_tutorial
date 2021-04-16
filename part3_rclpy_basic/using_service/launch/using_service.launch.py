@@ -22,7 +22,11 @@ def generate_launch_description():
         ],
     )
     original_msg_example = launch_ros.actions.Node(
-        package='original_msg_example', executable='example_msg_output'
+        package='original_msg_example', executable='example_msg_srv'
+    )
+
+    using_service = launch_ros.actions.Node(
+        package='using_service', executable='using_service'
     )
 
     rqt_graph = launch_ros.actions.Node(
@@ -33,5 +37,6 @@ def generate_launch_description():
         pub_int32_a,
         pub_int32_b,
         original_msg_example,
+        using_service,
         rqt_graph
     ])

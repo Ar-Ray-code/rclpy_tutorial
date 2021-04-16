@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>using_service</name>
+  <name>original_msg_example</name>
   <version>0.0.0</version>
-  <description>The using_service package</description>
+  <description>The original_msg_example package</description>
   <maintainer email="ray255ar@gmail.com">ubuntu</maintainer>
   <license>Apache License, Version 2.0</license>
 
