@@ -2,15 +2,14 @@ import os
 from glob import glob
 from setuptools import setup
 
-package_name = 'pub_sub_int32'
+package_name = 'part3_4_using_service'
 
 setup(
     name=package_name,
     version='0.0.0',
     packages=[],
     py_modules= [
-        'scripts.pub_int',
-        'scripts.sub_int'
+        'scripts.using_service'
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -30,8 +29,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'pub_int_node = scripts.pub_int:ros_main',
-            'sub_int_node = scripts.sub_int:ros_main'
+            'using_service = scripts.using_service:ros_main'
         ],
     },
     data_files=[

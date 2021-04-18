@@ -2,7 +2,7 @@ import os
 from glob import glob
 from setuptools import setup
 
-package_name = 'original_msg_example'
+package_name = 'part3_3_original_msg_example'
 
 setup(
     name=package_name,

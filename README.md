@@ -23,7 +23,7 @@ Example source codes for rclpy
 - [x] rosparam_example
 - [x] msg_example
 - [x] srv_example (server)
-- [x] srv_example (client)
+- [ ] srv_example (client)
 
 ## part 4 ros2arduino
 
