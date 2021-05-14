@@ -20,7 +20,7 @@ class using_srv(Node):
 
         self.pub = self.create_publisher(ExampleMsg, 'pub_ExampleMsg', pub_qos)
 
-        self.calc_module = self.create_client(CalcMsgSrv, 'calc_ab')
+        self.calc_module = self.create_client(CalcMsgSrv, '/calc_ab')
         while not self.calc_module.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service not available, waiting again...')
         self.req = CalcMsgSrv.Request()
@@ -33,10 +33,10 @@ class using_srv(Node):
         
         self.req.a = self.a
         self.req.b = self.b
+        self.req = CalcMsgSrv.Request()
         sub_data = self.calc_module.call_async(self.req)
         
-        self.req = CalcMsgSrv.Request()
-        self.get_logger().info(str(sub_data.done()))
+        self.get_logger().info(str(sub_data.result()))
     
     def sub_a(self,data):
         self.a = data.data
