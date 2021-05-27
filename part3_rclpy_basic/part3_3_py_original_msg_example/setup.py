@@ -10,7 +10,6 @@ setup(
     packages=[],
     py_modules= [
         'scripts.example_msg_output',
-        'scripts.example_msg_srv',
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -31,7 +30,6 @@ setup(
     entry_points={
         'console_scripts': [
             'example_msg_output = scripts.example_msg_output:ros_main',
-            'example_msg_srv = scripts.example_msg_srv:ros_main',
         ],
     },
     data_files=[

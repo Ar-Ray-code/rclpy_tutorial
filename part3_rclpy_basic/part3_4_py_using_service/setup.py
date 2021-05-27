@@ -2,14 +2,15 @@ import os
 from glob import glob
 from setuptools import setup
 
-package_name = 'part3_2_rosparam_example'
+package_name = 'part3_4_py_using_service'
 
 setup(
     name=package_name,
     version='0.0.0',
     packages=[],
-    py_modules=[
-        'scripts.param_int2string',
+    py_modules= [
+        'scripts.example_msg_srv',
+        'scripts.using_service',
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -29,7 +30,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'param_int2string = scripts.param_int2string:ros_main',
+            'example_msg_srv = scripts.example_msg_srv:ros_main',
+            'using_service = scripts.using_service:ros_main',
         ],
     },
     data_files=[
