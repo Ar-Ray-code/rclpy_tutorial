@@ -3,8 +3,8 @@ import rclpy
 from rclpy.node import Node
 from rclpy.parameter import Parameter
 from rclpy.qos import QoSHistoryPolicy, QoSProfile
-from example_interfaces.msg import Int32
-from example_interfaces.msg import String
+from std_msgs.msg import Int32
+from std_msgs.msg import String
 
 class param_int2string(Node):
 

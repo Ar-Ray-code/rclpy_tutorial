@@ -1,7 +1,7 @@
 #!/bin/python3
 import rclpy
 from rclpy.node import Node
-from example_interfaces.msg import Int32
+from std_msgs.msg import Int32
 
 from original_msg_srv.msg import ExampleMsg
 from original_msg_srv.srv import CalcMsgSrv

@@ -8,7 +8,7 @@
   <license>Apache License, Version 2.0</license>
 
   <exec_depend>rclpy</exec_depend>
-  <exec_depend>example_interfaces</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
   <exec_depend>original_msg_srv</exec_depend>
 
   <export>

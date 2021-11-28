@@ -2,7 +2,7 @@
 import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSHistoryPolicy, QoSProfile
-from example_interfaces.msg import Int32
+from std_msgs.msg import Int32
 
 from original_msg_srv.msg import ExampleMsg
 
