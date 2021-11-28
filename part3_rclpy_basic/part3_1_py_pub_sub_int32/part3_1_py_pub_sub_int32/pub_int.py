@@ -1,20 +1,15 @@
 #!/bin/python3
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import QoSHistoryPolicy, QoSProfile
 from std_msgs.msg import Int32
 
-import time
-
 class pub_int(Node):
-
     def __init__(self):
         self.number = 0
 
         super().__init__('pub_int')
-        pub_qos = QoSProfile(history=QoSHistoryPolicy.KEEP_LAST, depth=1)
-
-        self.pub = self.create_publisher(Int32, 'pub_int',pub_qos)
+        
+        self.pub = self.create_publisher(Int32, 'pub_int',10)
         self.declare_parameter('pub_rate',2)
         
         param = self.get_parameter('pub_rate')

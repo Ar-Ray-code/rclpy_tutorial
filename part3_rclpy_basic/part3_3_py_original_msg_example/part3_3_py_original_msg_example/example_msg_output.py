@@ -1,7 +1,6 @@
 #!/bin/python3
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import QoSHistoryPolicy, QoSProfile
 from std_msgs.msg import Int32
 
 from original_msg_srv.msg import ExampleMsg
@@ -10,18 +9,16 @@ class msg_output(Node):
 
     def __init__(self):
         super().__init__('msg_output')
-        pub_qos = QoSProfile(history=QoSHistoryPolicy.KEEP_LAST, depth=1)
-        sub_qos = QoSProfile(history=QoSHistoryPolicy.KEEP_LAST, depth=1)
 
-        self.pub = self.create_publisher(ExampleMsg, 'pub_ExampleMsg',pub_qos)
+        self.pub = self.create_publisher(ExampleMsg, 'pub_ExampleMsg',10)
 
         self.a = 0
         self.b = 0
 
         self.msg_data = ExampleMsg()
 
-        self.create_subscription(Int32,'a',self.sub_a,sub_qos)
-        self.create_subscription(Int32,'b',self.sub_b,sub_qos)
+        self.create_subscription(Int32,'a',self.sub_a,10)
+        self.create_subscription(Int32,'b',self.sub_b,10)
     
     def calc_four_arithmetic_operations(self):
         self.msg_data.a              = self.a
